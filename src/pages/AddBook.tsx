@@ -18,11 +18,14 @@ export default function AddBook() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const form = event.target;
-    const title = form.title.value;
-    const author = form.author.value;
-    const genre = form.genre.value;
-    const publication_date = form.publication_date.value;
+    // const form = event.target;
+    const form = event.target as HTMLFormElement;
+    const title = (form.elements.namedItem('title') as HTMLInputElement).value;
+    const author = (form.elements.namedItem('author') as HTMLInputElement).value;
+    const genre = (form.elements.namedItem('genre') as HTMLInputElement).value;
+    const publication_date = (form.elements.namedItem('publication_date') as HTMLInputElement).value;
+
+
     const data ={
       title:title,
       author:author,
