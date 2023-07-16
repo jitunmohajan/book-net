@@ -1,23 +1,12 @@
 import { Button } from '@/components/ui/button';
-import { ChangeEvent, FormEvent } from 'react';
-import { DatePickerWithPresets } from '@/components/ui/datePickerWithPreset';
+import { FormEvent } from 'react';
+
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Switch } from '@/components/ui/switch';
-import { Textarea } from '@/components/ui/textarea';
-// import { useAppSelector } from '@/redux/hook';
-// import { IBook } from '@/types/globalTypes';
 import { usePostBookMutation } from '@/redux/features/books/bookApi';
-
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function AddBook() {
-  // const [scheduled, setScheduled] = useState<boolean>(false);
-
-  // const { books } = useAppSelector((state) => state.cart);
-
   const [postBook, { isLoading, isError, isSuccess }] =
   usePostBookMutation();
 
@@ -43,16 +32,8 @@ export default function AddBook() {
     }
     console.log(data);
 
-    // const options = {
-    //   id: id,
-    //   data: { comment: inputValue },
-    // };
-
     postBook(data);
     navigate('/books')
-
-    
-    // setInputValue('');
   };
 
   return (

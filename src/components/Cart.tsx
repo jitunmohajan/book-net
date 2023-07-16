@@ -5,23 +5,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from './ui/sheet';
-import {
-  HiMinus,
-  HiOutlinePlus,
-  HiOutlineShoppingCart,
-  HiOutlineTrash,
-} from 'react-icons/hi';
+import { HiOutlineTrash } from 'react-icons/hi';
 import { Button } from './ui/button';
-// import { IBook } from '@/types/globalTypes';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import {
-  addToCart,
   removeFromCart,
-  removeOne,
 } from '@/redux/features/cart/cartSlice';
+import { Link } from 'react-router-dom';
 
 export default function Cart() {
-  const { books, total } = useAppSelector((state) => state.cart);
+  const { books } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
   return (
@@ -29,13 +22,11 @@ export default function Cart() {
       <SheetTrigger>
         <Button variant="ghost">
           Wish List
-          {/* <HiOutlineShoppingCart size="25" /> */}
         </Button>
       </SheetTrigger>
       <SheetContent className="overflow-auto relative">
         <SheetHeader>
           <SheetTitle>Wish List</SheetTitle>
-          {/* <h1>Total: {total.toFixed(2)}</h1> */}
         </SheetHeader>
         <div className="space-y-5">
           {books.map((book) => (
@@ -43,24 +34,15 @@ export default function Cart() {
               className="border h-44 p-5 flex justify-between rounded-md"
               key={book.title}
             >
-              {/* <div className="border-r pr-5 shrink-0">
-                <img src={book?.image} alt="" className="h-full" />
-              </div> */}
-              <div className="px-2 w-full flex flex-col gap-3">
-                <h1 className="text-2xl self-center">{book?.title}</h1>
-                <p  className="text-2xl self-center">Author: {book.author}</p>
-                {/* <p className="text-xl">
-                  Total Price: {(book.price * book.quantity!).toFixed(2)}{' '}
-                  $
-                </p> */}
-              </div>
+              <Link to={`/book-details/${book._id}`}>
+                <div className="px-2 w-full flex flex-col gap-3">
+                  <h1 className="text-2xl self-center">{book?.title}</h1>
+                  <p  className="text-2xl self-center">Author: {book.author}</p>
+                
+                </div>
+              </Link>
               <div className="border-l pl-5 flex flex-col justify-between">
-                {/* <Button onClick={() => dispatch(addToCart(book))}>
-                  <HiOutlinePlus size="20" />
-                </Button>
-                <Button onClick={() => dispatch(removeOne(book))}>
-                  <HiMinus size="20" />
-                </Button> */}
+                
                 <Button
                   onClick={() => dispatch(removeFromCart(book))}
                   variant="destructive"
