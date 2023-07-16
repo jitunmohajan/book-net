@@ -19,6 +19,7 @@ export default function BookReview({ id }: IProps) {
   console.log(data);
   
   return (
+
     <div className="max-w-7xl mx-auto mt-5">
      
       <div>
